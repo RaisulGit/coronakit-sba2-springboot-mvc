@@ -1,11 +1,18 @@
 package com.eval.coronakit.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.eval.coronakit.entity.ProductMaster;
 import com.eval.coronakit.service.CoronaKitService;
 import com.eval.coronakit.service.KitDetailService;
 import com.eval.coronakit.service.ProductService;
@@ -23,9 +30,11 @@ public class UserController {
 	@Autowired
 	KitDetailService kitDetailService;
 	
+	//Map<Integer,List<String>> map = new HashMap<>();
+	
 	@RequestMapping("/home")
 	public String home() {
-		return null;
+		return "user-home";
 	}
 	
 	@RequestMapping("/show-kit")
@@ -35,12 +44,16 @@ public class UserController {
 
 	@RequestMapping("/show-list")
 	public String showList(Model model) {
-		return null;
+		model.addAttribute("products",productService.getAllProducts());
+		return "show-all-item-user";
 	}
 	
-	@RequestMapping("/add-to-cart/{productId}")
-	public String showKit(@PathVariable("productId") int productId) {
-		return null;
+	@RequestMapping("/add-to-cart")
+	public String showKit(@RequestParam("pid") int id, @RequestParam("quantity") int quantity, @ModelAttribute("product") ProductMaster product,Model model) {
+		
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+id);
+		//System.out.println(map);	
+		return "show-all-item-user";
 	}
 	
 	@RequestMapping("/checkout")

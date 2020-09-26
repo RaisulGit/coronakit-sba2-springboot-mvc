@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="${pageContext.request.contextPath}/header" />
+<hr />
+	<a href="${pageContext.request.contextPath}/user/show-kit">Show Kit</a>
+	<a href="${pageContext.request.contextPath}/user/show-list">List Product</a>
 </body>
 </html>

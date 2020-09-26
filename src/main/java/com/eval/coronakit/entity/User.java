@@ -7,9 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
-
-	
+public class User {	
 	@Id
 	@Column(insertable = true)
 	private String username;
@@ -18,12 +16,20 @@ public class User {
 	private String password;
 	@Column
 	private boolean enabled;
-	@Column
+	@Column	
 	private String email;
 	
 	@Column
 	private String contact;
-	
+	//Added by Raisul Alam
+	public User(String username, String password, boolean enabled, String email, String contact) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.email = email;
+		this.contact = contact;
+	}
 	public String getUsername() {
 		return username;
 	}

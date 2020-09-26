@@ -1,10 +1,9 @@
 package com.eval.coronakit.service;
 
 import java.util.List;
-
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.eval.coronakit.dao.KitDetailRepository;
 import com.eval.coronakit.entity.KitDetail;
 
@@ -15,21 +14,28 @@ public class KitDetailServiceImpl implements KitDetailService {
 	KitDetailRepository repository;
 	
 	@Override
+	@Transactional
 	public KitDetail addKitItem(KitDetail kitItem) {
-		// TODO Auto-generated method stub
-		return null;
+		if(kitItem!=null) {
+			if(repository.existsById(kitItem.getId())) {
+				//throw new ContactException("Contact Id already in use!");
+			}
+			//if(repository.existsByMobile(kitItem.getMobile())) {
+				//throw new ContactException("Mobile Number is already in use!");
+			//}
+			repository.save(kitItem);
+		}
+		return kitItem;
 	}
 
 	@Override
 	public KitDetail getKitItemById(int itemId) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findById(itemId).orElse(null);
 	}
 
 	@Override
 	public List<KitDetail> getAllKitItemsOfAKit(int kitId) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 
 }

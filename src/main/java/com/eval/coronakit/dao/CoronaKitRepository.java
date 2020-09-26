@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.eval.coronakit.entity.CoronaKit;
 
 @Repository
-public interface CoronaKitRepository extends JpaRepository<CoronaKit, Integer>{
-
+public interface CoronaKitRepository extends JpaRepository<CoronaKit, Integer> {
+		
+		boolean existsById(String id);
 }

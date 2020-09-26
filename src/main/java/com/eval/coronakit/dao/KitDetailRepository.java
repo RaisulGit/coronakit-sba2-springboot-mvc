@@ -7,5 +7,6 @@ import com.eval.coronakit.entity.KitDetail;
 
 @Repository
 public interface KitDetailRepository extends JpaRepository<KitDetail, Integer>{
-
+	boolean existsById(String id);
+	boolean existsByCoronaKitId(String coronaKitId);
 }

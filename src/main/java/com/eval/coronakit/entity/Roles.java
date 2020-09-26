@@ -101,12 +101,5 @@ public class Roles implements Serializable{
 		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
-	}*/
-	
-	
-	
-	
-	
-	
-	
+	}*/	
 }
