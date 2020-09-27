@@ -52,6 +52,7 @@
 				<td><b>${totalqty}</b></td>
 				<td></td>
 				<td><b>${tamnt}</b></td>
+				<td></td>
 			</tr>
 		</table>
 		<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/show-list">BACK TO SHOW LIST</a>
