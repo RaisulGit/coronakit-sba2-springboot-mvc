@@ -1,5 +1,6 @@
 package com.eval.coronakit.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.eval.coronakit.entity.CoronaKit;
 import com.eval.coronakit.entity.KitDetail;
 import com.eval.coronakit.entity.ProductMaster;
 import com.eval.coronakit.service.CoronaKitService;
@@ -37,7 +39,7 @@ public class UserController {
 	Map<Integer, List<String>> globalMap = new HashMap<>();
 	int globalTqy = 0;
 	int globalTamnt = 0;
-	
+	int globalKitId = 0;
 	@RequestMapping("/home")
 	public String home() {
 		return "user-home";
@@ -106,13 +108,19 @@ public class UserController {
 				kit.setProductId(key);
 				kitDetailService.addKitItem(kit);
 			} 
-		 	 
+		 	globalKitId = randomKitId; 
 		return "checkout-address";
 	}
 
 	@RequestMapping("/finalize")
 	public String finalizeOrder(@RequestParam("address") String address, Model model) {
-		System.out.println(model.getAttribute("Address==============="+address));
+		//System.out.println(model.getAttribute("Address==============="+address));
+		CoronaKit coronaKit = new CoronaKit();
+		coronaKit.setDeliveryAddress("ABC");
+		coronaKit.setId(globalKitId);
+		coronaKit.setOrderDate(LocalDate.now().toString());
+		coronaKit.setTotalAmount(globalTamnt);
+		coronaKitService.saveKit(coronaKit);
 		return "show-summary";
 	}
 
