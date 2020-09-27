@@ -34,6 +34,7 @@
 				<th>Quantity</th>
 				<th>Cost per Qty</th>
 				<th>Amount</th>
+				<th>Action</th>
 			</tr>
 			<c:forEach items="${map}" var="element">
 				<tr>
@@ -42,6 +43,7 @@
 				<td><c:out value="${element.value[1]}"></c:out></td>
 				<td><c:out value="${element.value[2]}"></c:out></td>
 				<td><c:out value="${element.value[3]}"></c:out></td>
+				<td><a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/delete?pid=${element.key}&qty=${element.value[1]}">REMOVE</a></td>
 				</tr>
 			</c:forEach>
 			<tr class="p-3 mb-2 bg-gradient-danger text-black">

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +31,11 @@ public class UserController {
 
 	@Autowired
 	KitDetailService kitDetailService;
-
 	
-
+	Map<Integer, List<String>> globalMap = new HashMap<>();
+	int globalTqy = 0;
+	int globalTamnt = 0;
+	
 	@RequestMapping("/home")
 	public String home() {
 		return "user-home";
@@ -43,7 +43,10 @@ public class UserController {
 
 	@RequestMapping("/show-kit")
 	public String showKit(Model model) {
-		return null;
+		model.addAttribute("map", globalMap);
+		model.addAttribute("totalqty", globalTqy);
+		model.addAttribute("tamnt", globalTamnt);
+		return "show-cart";
 	}
 
 	@RequestMapping("/show-list")
@@ -78,25 +81,45 @@ public class UserController {
 			  lst1.add(String.valueOf(amount));  
 			  map.put(p.getId(), lst1);
 		}
-		System.out.println("LLLLLLLLLLLLLLL"+tqy);
 		model.addAttribute("map", map);
 		model.addAttribute("totalqty", tqy);
 		model.addAttribute("tamnt", tamnt);
+		globalMap=map;
+		globalTamnt=tamnt;
+		globalTqy=tqy;
+		//checkout(product, model, map);
 		return "show-cart";
 	}
 
 	@RequestMapping("/checkout")
-	public String checkout(Model model) {
+	public String checkout(@ModelAttribute("product") ProductMaster product,Model model) {
+		/*
+		 * coronaKitService.saveKit(kit);
+		 * 
+		 * 
+		 * 
+		 * kitDetailService.addKitItem(kitItem);
+		 */
 		return "checkout-address";
 	}
 
 	@RequestMapping("/finalize")
 	public String finalizeOrder(String address, Model model) {
-		return null;
+		return "show-summary";
 	}
 
-	@RequestMapping("/delete/{itemId}")
-	public String deleteItem(@PathVariable("itemId") int itemId) {
-		return null;
+	@RequestMapping("/delete")
+	public String deleteItem(@RequestParam("pid") int pid,@RequestParam("qty") int qty,ProductMaster product,Model model) {
+			
+			  ProductMaster p = productService.getProductById(pid); 
+			  int amount=p.getCost()*qty;
+			  globalTamnt=globalTamnt-amount;
+			  globalTqy=globalTqy-qty;
+			  globalMap.remove(pid); 			 
+			  model.addAttribute("map", globalMap); 
+			  model.addAttribute("totalqty", globalTqy); 
+			  model.addAttribute("tamnt",globalTamnt);			 
+			  return "show-cart";
+
 	}
 }
