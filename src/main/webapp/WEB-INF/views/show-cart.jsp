@@ -32,6 +32,7 @@
 				<th>Product#</th>
 				<th>Product Name</th>
 				<th>Quantity</th>
+				<th>Cost per Qty</th>
 				<th>Amount</th>
 			</tr>
 			<c:forEach items="${map}" var="element">
@@ -40,15 +41,19 @@
 				<td><c:out value="${element.value[0]}"></c:out></td>
 				<td><c:out value="${element.value[1]}"></c:out></td>
 				<td><c:out value="${element.value[2]}"></c:out></td>
+				<td><c:out value="${element.value[3]}"></c:out></td>
 				</tr>
 			</c:forEach>
 			<tr class="p-3 mb-2 bg-gradient-danger text-black">
 				<td><b>Total</b></td>
 				<td></td>
 				<td><b>${totalqty}</b></td>
+				<td></td>
 				<td><b>${tamnt}</b></td>
 			</tr>
 		</table>
+		<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/show-list">BACK TO SHOW LIST</a>
+		<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/checkout">CHECKOUT FOR ADDRESS</a>
 		<a class="btn btn-sm btn-danger"
 			href="${pageContext.request.contextPath}/custom-login">LOGOUT</a>
 	</section>

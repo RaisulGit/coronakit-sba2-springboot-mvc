@@ -74,6 +74,7 @@ public class UserController {
 			tamnt=tamnt+amount;
 			  lst1.add(p.getProductName());
 			  lst1.add(String.valueOf(lst.get(i).charAt(1)));
+			  lst1.add(String.valueOf(p.getCost()));
 			  lst1.add(String.valueOf(amount));  
 			  map.put(p.getId(), lst1);
 		}
@@ -86,7 +87,7 @@ public class UserController {
 
 	@RequestMapping("/checkout")
 	public String checkout(Model model) {
-		return null;
+		return "checkout-address";
 	}
 
 	@RequestMapping("/finalize")
