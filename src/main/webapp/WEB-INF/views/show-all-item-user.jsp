@@ -33,6 +33,7 @@
 					sometime</p>
 			</c:when>
 			<c:otherwise>
+			<form action="${pageContext.request.contextPath}/user/add-to-cart" method="POST">
 				<table class="table table-striped table-hover table-border">
 					<tr>
 						<th>Product#</th>
@@ -49,21 +50,20 @@
 							<td>${product.cost }</td>
 							<td>${product.productDescription }</td>
 							<td><select name="quantity" id="quantity${product.id}">
-								<option value="0">0</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
+								<option value="${product.id}0">0</option>
+								<option value="${product.id}1">1</option>
+								<option value="${product.id}2">2</option>
+								<option value="${product.id}3">3</option>
+								<option value="${product.id}4">4</option>
 							</select></td>
-							<td><a class="btn btn-sm btn-danger"
-								href="${pageContext.request.contextPath}/user/add-to-cart?pid=${product.id}">ADD</a>
-							</td>
 						</tr>
 					</c:forEach>
 				</table>
-				<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/custom-login">LOGOUT</a>
+				<input type="submit" class="btn btn-sm btn-danger" value="CHECKOUT"/>
+				</form>
 			</c:otherwise>
 		</c:choose>
+		<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/custom-login">LOGOUT</a>
 	</section>
 </body>
 </html>
