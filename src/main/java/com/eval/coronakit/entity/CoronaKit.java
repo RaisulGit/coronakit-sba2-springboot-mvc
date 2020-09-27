@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class CoronaKit {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String deliveryAddress;
 	private String orderDate;

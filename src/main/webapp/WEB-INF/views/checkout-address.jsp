@@ -17,7 +17,7 @@
 <section>
 <jsp:include page="${pageContext.request.contextPath}/header" />
 	<div class="col-sm-4">	
-	<form:form  class="form" action='${pageContext.request.contextPath}/user/finalize' method="POST" modelAttribute="product">
+	<%-- <form:form  class="form" action='${pageContext.request.contextPath}/user/finalize' method="POST" modelAttribute="product">
 		<div class="form-group">
 			<form:label path="productName">Enter Delivery Address</form:label>
 			<form:input type="text" path="productName" class="form-control"/>
@@ -26,8 +26,10 @@
 		<div class="form-group text-right">
 		<button type="submit" class="btn btn-primary">SAVE</button>
 		</div>
-	</form:form>
-	<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/show-kit">Back To Cart</a>
+	</form:form> --%>
+	<label>Enter Address</label>
+	<input type="text" name="address" />
+	<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/finalize?address=${address}">SAVE</a>
 	</div>
 	</section>
 </body>

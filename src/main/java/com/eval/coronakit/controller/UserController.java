@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -88,32 +89,30 @@ public class UserController {
 		globalMap=map;
 		globalTamnt=tamnt;
 		globalTqy=tqy;
-		//checkout(product, model, map);
 		return "show-cart";
 	}
 
 	@RequestMapping("/checkout")
 	public String checkout(@ModelAttribute("product") ProductMaster product,Model model) {
-			KitDetail kit = new KitDetail();
-			int randomKitId=(int)Math.random()*10000;
-			kit.setCoronaKitId(randomKitId);
-			kit.setAmount(globalTamnt);
-			for (Integer key : globalMap.keySet()) {
-			    System.out.println("Key = " + key);
-			}
-
-			// Iterating over values only
-			for (Integer value : globalMap.values()) {
-			    System.out.println("Value = " + value);
-			}
-		  
-		  //kitDetailService.addKitItem(kitItem);
-		 
+			
+			Random rand = new Random();
+			int randomKitId = rand.nextInt((100 - 10) + 1) + 10;
+			Set<Integer> keys = globalMap.keySet();
+			for(Integer key: keys) {
+				KitDetail kit = new KitDetail();
+				kit.setCoronaKitId(randomKitId);
+				kit.setAmount(Integer.parseInt(globalMap.get(key).get(3)));
+				kit.setQuantity(Integer.parseInt((globalMap.get(key).get(1))));
+				kit.setProductId(key);
+				kitDetailService.addKitItem(kit);
+			} 
+		 	 
 		return "checkout-address";
 	}
 
 	@RequestMapping("/finalize")
-	public String finalizeOrder(String address, Model model) {
+	public String finalizeOrder(@RequestParam("address") String address, Model model) {
+		System.out.println(model.getAttribute("Address==============="+address));
 		return "show-summary";
 	}
 
