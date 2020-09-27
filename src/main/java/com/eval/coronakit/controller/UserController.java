@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.eval.coronakit.entity.KitDetail;
 import com.eval.coronakit.entity.ProductMaster;
 import com.eval.coronakit.service.CoronaKitService;
 import com.eval.coronakit.service.KitDetailService;
@@ -93,13 +94,21 @@ public class UserController {
 
 	@RequestMapping("/checkout")
 	public String checkout(@ModelAttribute("product") ProductMaster product,Model model) {
-		/*
-		 * coronaKitService.saveKit(kit);
-		 * 
-		 * 
-		 * 
-		 * kitDetailService.addKitItem(kitItem);
-		 */
+			KitDetail kit = new KitDetail();
+			int randomKitId=(int)Math.random()*10000;
+			kit.setCoronaKitId(randomKitId);
+			kit.setAmount(globalTamnt);
+			for (Integer key : globalMap.keySet()) {
+			    System.out.println("Key = " + key);
+			}
+
+			// Iterating over values only
+			for (Integer value : globalMap.values()) {
+			    System.out.println("Value = " + value);
+			}
+		  
+		  //kitDetailService.addKitItem(kitItem);
+		 
 		return "checkout-address";
 	}
 
