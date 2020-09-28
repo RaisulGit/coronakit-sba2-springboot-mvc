@@ -16,17 +16,17 @@ public class ProductMaster {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull(message="Product Name is required")
+	@NotNull(message="Product name is required")
 	@Size(min=2, message="Product Name must be more than 2 character")
 	private String productName;
 	
-	@NotNull(message="Product Name is required")
+	@NotNull(message="Product cos is required")
 	@Min(value=10,message="Product cost can not be less than 10")
 	private Integer cost;
 	
-	@NotNull(message="Product Description is required")
-	@Size(min=5, message="Product Description must be more than 5 character")
-	private String productDescription;
+	@NotNull(message="Product description is required")
+	@Size(min=5, message="Product description must be more than 5 character")
+	private String productDescription;	
 	
 	public ProductMaster() {
 		// TODO Auto-generated constructor stub
