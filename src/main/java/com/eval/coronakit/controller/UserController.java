@@ -114,9 +114,8 @@ public class UserController {
 
 	@RequestMapping("/finalize")
 	public String finalizeOrder(@RequestParam("address") String address, Model model) {
-		//System.out.println(model.getAttribute("Address==============="+address));
 		CoronaKit coronaKit = new CoronaKit();
-		coronaKit.setDeliveryAddress("ABC");
+		coronaKit.setDeliveryAddress(address);
 		coronaKit.setId(globalKitId);
 		coronaKit.setOrderDate(LocalDate.now().toString());
 		coronaKit.setTotalAmount(globalTamnt);
