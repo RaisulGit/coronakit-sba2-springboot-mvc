@@ -31,10 +31,10 @@
 		<i>Invalid Credentials!!!</i>
 	</core:if>
 
-	<spring-form:form action="${pageContext.request.contextPath}/validate"	method="POST">
+	<spring-form:form action="${pageContext.request.contextPath}/validate" method="POST">
 		<br />
 		<br />
-		<label>Username</label>
+		<label>User Name</label>
 		<input type="text" name="username" required="required"/>
 		<br />
 		<br />

@@ -44,7 +44,8 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(!(auth instanceof AnonymousAuthenticationToken) && auth.isAuthenticated()) {
 			String role = new ArrayList<>(auth.getAuthorities()).get(0).getAuthority();
-			mv.addObject("unm",auth.getName());
+			mv.addObject("username",auth.getName());
+			System.out.println("Username@@@@@@@@@@@@@@"+auth.getName());
 			mv.addObject("role",role);
 		}
 		return  mv;
