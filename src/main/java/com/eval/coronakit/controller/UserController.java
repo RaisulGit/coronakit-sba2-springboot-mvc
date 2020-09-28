@@ -121,6 +121,9 @@ public class UserController {
 		coronaKit.setOrderDate(LocalDate.now().toString());
 		coronaKit.setTotalAmount(globalTamnt);
 		coronaKitService.saveKit(coronaKit);
+		globalMap=null;
+		globalTqy=0;
+		globalTamnt=0;
 		return "show-summary";
 	}
 

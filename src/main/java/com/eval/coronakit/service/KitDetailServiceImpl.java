@@ -17,12 +17,6 @@ public class KitDetailServiceImpl implements KitDetailService {
 	@Transactional
 	public KitDetail addKitItem(KitDetail kitItem) {
 		if(kitItem!=null) {
-			if(repository.existsById(kitItem.getId())) {
-				//throw new ContactException("Contact Id already in use!");
-			}
-			//if(repository.existsByMobile(kitItem.getMobile())) {
-				//throw new ContactException("Mobile Number is already in use!");
-			//}
 			repository.save(kitItem);
 		}
 		return kitItem;

@@ -30,6 +30,7 @@
 	<label>Enter Address</label>
 	<input type="text" name="address" />
 	<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/finalize?address=${address}">SAVE</a>
+	<a class="btn btn-sm btn-danger" href="${pageContext.request.contextPath}/user/show-kit">BACK To Kit</a>
 	</div>
 	</section>
 </body>

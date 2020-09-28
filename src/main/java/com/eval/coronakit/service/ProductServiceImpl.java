@@ -19,12 +19,6 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public ProductMaster addNewProduct(ProductMaster product) {
 		if(product!=null) {
-			if(repository.existsById(product.getId())) {
-				//throw new ContactException("Contact Id already in use!");
-			}
-			//if(repository.existsByMobile(product.getMobile())) {
-			//	throw new ContactException("Mobile Number is already in use!");
-			//}
 			repository.save(product);
 		}
 		return product;
@@ -38,9 +32,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public ProductMaster deleteProduct(int productId) {
-		if(!repository.existsById(productId)) {
-			//throw new ContactException("Contact Id is not found!");
-		}
 		repository.deleteById(productId);
 		ProductMaster product=null;
 		return product;

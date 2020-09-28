@@ -18,10 +18,6 @@ public class CoronaKitServiceImpl implements CoronaKitService {
 	@Transactional
 	public CoronaKit saveKit(CoronaKit kit){
 		if(kit!=null) {
-			if(!repository.existsById(kit.getId())) {
-				//throw new Exception("Contact Id is not found!");
-				//Raisul - need to handle Exception
-			}
 			repository.save(kit);
 		}
 		return kit;
